@@ -345,11 +345,11 @@ const RenderCatigories = ({ lan }) => {
                         <form
                           autoComplete="off"
                           onSubmit={formPost}
-                          className=" relative space-y-4 md:space-y-5 mt-4 md:mt-0 mx-auto flex flex-col justify-center"
+                          className=" relative space-y-3 md:space-y-5 mt-4 md:mt-0 mx-auto flex flex-col justify-center"
                         >
                           <input
                             name="name"
-                            className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[80%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
+                            className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[90%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
                             type="text"
                             placeholder={lan ? "Ваше имя" : "Ismingiz"}
                             required
@@ -364,7 +364,7 @@ const RenderCatigories = ({ lan }) => {
                           </span>
                           <input
                             name="password"
-                            className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[80%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
+                            className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[90%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
                             type="tel"
                             placeholder={lan ? "Ваш номер" : "Raqamingiz"}
                             defaultValue={"+998"}
@@ -380,7 +380,7 @@ const RenderCatigories = ({ lan }) => {
                           </span>
                           <input
                             name="address"
-                            className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[80%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
+                            className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[90%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
                             placeholder={lan ? "Ваше адрес" : "Manzilingiz"}
                             type="text"
                             minLength={5}
