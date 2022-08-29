@@ -1,0 +1,18 @@
+.clock {
+  position: relative;
+  padding-left: 35px;
+  margin-top: 10px;
+}
+
+.clock:before {
+  position: absolute;
+  content: "";
+  width: 27px;
+  height: 27px;
+  top: -3px;
+  left: 0;
+  background-image: url("../../styles//assets//icons/clock.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}

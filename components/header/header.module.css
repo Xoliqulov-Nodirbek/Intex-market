@@ -1,0 +1,112 @@
+.wrapper {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+.wrapper__2 {
+  width: 100%;
+  height: 700px;
+  background-image: url("../../styles/assets/images/Gla.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 0px;
+}
+
+.header__link{
+  position: relative;
+  padding: 9px 0;
+}
+
+.header__link::before{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  left: 50%;
+  bottom: 5px;
+  transition: all .3s ease;
+}
+
+.header__link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  background-color: #fff;
+  right: 50%;
+  bottom: 5px;
+  transition: all .3s ease;
+}
+
+.header__item:hover > .header__link::before{
+  width: 50%;
+}
+
+.header__item:hover > .header__link::after{
+  width: 50%;
+}
+
+.telegram {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-shadow: 0 7px 13px -7px #111, -50px -50px 1px -30px hsl(0deg 0% 60% / 0%);
+  border-radius: 4px;
+  background-image: url("../../styles/assets/images/telegram.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all 0.1s ease-in-out;
+}
+
+.telegram:hover {
+  transform: scale(1.05);
+}
+
+.instagram {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  box-shadow: 0 7px 13px -7px #111, -50px -50px 1px -30px hsl(0deg 0% 60% / 0%);
+  border-radius: 4px;
+  background-image: url("../../styles/assets/images/instagram.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: all 0.1s ease-in-out;
+}
+
+.instagram:hover {
+  transform: scale(1.05);
+}
+
+.language {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  box-shadow: 0 7px 13px -7px #111, -50px -50px 1px -30px hsl(0deg 0% 60% / 0%);
+}
+
+@media only screen and (max-width: 768px) {
+  .wrapper__2 {
+    height: 300px;
+    background-image: url("../../styles/assets/images/bg-mobile.png");
+  }
+
+  .telegram {
+    width: 26px;
+    height: 26px;
+  }
+
+  .instagram {
+    width: 26px;
+    height: 26px;
+  }
+
+  .language {
+    width: 26px;
+    height: 26px;
+  }
+}
+

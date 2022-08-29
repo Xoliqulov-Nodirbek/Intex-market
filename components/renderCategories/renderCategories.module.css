@@ -1,0 +1,50 @@
+.category {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.title {
+  box-shadow: rgb(0 0 0 / 25%) 0px 4px 10px;
+}
+
+.item {
+  background-color: #fff;
+  color: rgba(0,0,0,.87);
+}
+
+.card__status {
+  border-bottom-right-radius: 10px;
+}
+
+.card__img {
+  border-top-right-radius: 35px;
+}
+
+.price::before {
+  content: "";
+  position: absolute;
+  width: 75%;
+  height: 2px;
+  top: 12px;
+  background-color: red;
+  transform: rotate(5deg);
+}
+
+/* ----- Modal ----- */
+
+.modalLeft {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+  border-radius: 0 35px 35px 35px;
+  padding: 25px 10px;
+}
+
+.success_img {
+  margin-top: -20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .price::before {
+    top: 8px;
+    width: 70%;
+    height: 1.5px;
+  }
+}

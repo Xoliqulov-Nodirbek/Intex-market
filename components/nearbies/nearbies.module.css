@@ -1,0 +1,16 @@
+.footerItem {
+  position: relative;
+  padding-left: 35px;
+}
+
+.footerItem::before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 0;
+  background-image: url("../../styles//assets//images/check.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
