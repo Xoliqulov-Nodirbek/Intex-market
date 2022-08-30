@@ -80,9 +80,12 @@ const Header = ({ lan, setLan }) => {
               categories?.map((item) => (
                 <li
                   key={item.id}
-                  className="text-lg text-white font-bold hover:bg-gray-400 px-3 py-1 rounded-sm cursor-pointer hover:bg-opacity-30 transition-all tracking-widest whitespace-nowrap"
+                  className={`${styles.nav__item} text-lg text-white font-bold cursor-pointe whitespace-nowrap`}
                 >
-                  <a href={`#${item.name_ru || item.name_uz}`}>
+                  <a
+                    href={`#${item.name_ru || item.name_uz}`}
+                    className={`${styles.nav__link} tracking-widest px-3 py-4`}
+                  >
                     {lan ? item.name_ru : item.name_uz}
                   </a>
                 </li>
@@ -167,9 +170,7 @@ const Header = ({ lan, setLan }) => {
                 {categories.length > 0 &&
                   categories.map((item) => (
                     <div key={item.id} onClick={handleClick}>
-                      <Link
-                        href={`#${item.name_ru || item.name_uz}`}
-                      >
+                      <Link href={`#${item.name_ru || item.name_uz}`}>
                         <a className="bg-white rounded-lg flex items-center justify-center text-md font-semibold text-green-main shadow-md shadow-[#00000046] px-6 md:px-5 py-2 md:py-3 cursor-pointer">
                           {lan ? item.name_ru : item.name_uz}
                         </a>

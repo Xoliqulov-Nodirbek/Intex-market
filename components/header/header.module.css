@@ -14,12 +14,12 @@
   margin-top: 0px;
 }
 
-.header__link{
+.nav__link{
   position: relative;
   padding: 9px 0;
 }
 
-.header__link::before{
+.nav__link::before{
   content: '';
   position: absolute;
   width: 0;
@@ -30,7 +30,7 @@
   transition: all .3s ease;
 }
 
-.header__link::after {
+.nav__link::after {
   content: '';
   position: absolute;
   width: 0;
@@ -41,11 +41,11 @@
   transition: all .3s ease;
 }
 
-.header__item:hover > .header__link::before{
+.nav__item:hover > .nav__link::before{
   width: 50%;
 }
 
-.header__item:hover > .header__link::after{
+.nav__item:hover > .nav__link::after{
   width: 50%;
 }
 
