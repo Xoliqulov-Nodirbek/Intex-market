@@ -18,7 +18,7 @@ const Header = ({ lan, setLan }) => {
     action: {},
   });
 
-  let production = "http://31.44.6.77:5555";
+  let production = "https://market-index.herokuapp.com";
 
   // ----- CloseMenu
   const handleClick = () => {

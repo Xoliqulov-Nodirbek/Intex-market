@@ -12,8 +12,10 @@ const Deliveries = ({ lan }) => {
   const [stylede, setStylede] = useState({});
   const [err, setErr] = useState("");
   const [errPassword, setErrPassword] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [post, setPost] = useState("");
+  const [forVal, setForval] = useState("");
+  const [numval, setNumval] = useState("");
+  const [text, setText] = useState("");
 
   let production = "http://31.44.6.77:5555";
 
@@ -40,38 +42,52 @@ const Deliveries = ({ lan }) => {
           setPost("");
         }, 2000)
       );
+      setText("");
+      setNumval("");
   };
 
   const changeNameHandler = (e) => {
     let elInputName = e.target.name;
     let elInputValue = e.target.value;
-
     let a = { [elInputName]: elInputValue };
-
     let style = {};
+    setText(e.target.value.replace(/[^a-zA-Z]/gi, ""));
 
     if (a[elInputName] === "") {
       style = {
         border: "2px solid red",
       };
+
       setErr("Вы не ввели свое имя");
     } else {
       style = {
         border: "2px solid #02db26",
       };
+
       setErr("");
     }
+
     setStyled(style);
   };
 
-  const changeValHandler = (e) => {
-    let elInputValue = e.target.value;
-    let formattedPhoneNumber = formatPhoneNumber(e.target.value);
+  const onfocusPhoneNumber = (number) => {
+    if (number === "") {
+      setNumval(`+998 `);
+    } else {
+      setNumval(numval);
+    }
+  };
+
+  const CantrolPhoneNumber = (number) => {
+    let a = [...number];
+
+    let result = a.map((x) => {
+      return parseInt(x, 10);
+    });
+    console.log(result);
+
     let stylee = {};
-
-    setInputValue(formattedPhoneNumber);
-
-    if (elInputValue === "") {
+    if (number.length < 16) {
       stylee = {
         border: "2px solid red",
       };
@@ -82,24 +98,46 @@ const Deliveries = ({ lan }) => {
       };
       setErrPassword("");
     }
+
     setStylede(stylee);
+
+    let arrNumber = number.split(" ").join("").split("");
+
+    if (arrNumber.length < 5) {
+      setNumval(number);
+      return;
+    }
+
+    let justBaseNumber = [];
+
+    if (arrNumber.slice(0, 4).join("") === "+998") {
+      justBaseNumber = arrNumber.slice(4, arrNumber.length);
+    } else if (arrNumber.slice(0, 3).join("") === "+99") {
+      justBaseNumber = arrNumber.slice(3, arrNumber.length);
+    } else if (arrNumber.slice(0, 2).join("") === "+9") {
+      justBaseNumber = arrNumber.slice(2, arrNumber.length);
+    } else if (arrNumber.slice(0, 1).join("") === "+") {
+      justBaseNumber = arrNumber.slice(1, arrNumber.length);
+    } else {
+      justBaseNumber = arrNumber.slice(0, arrNumber.length);
+    }
+
+    let newNumber = `+998 `;
+
+    for (let i = 0; i < justBaseNumber.length; i++) {
+      if (i === 2 || i === 5 || i === 7) {
+        newNumber += ` ${justBaseNumber[i]}`;
+      } else {
+        newNumber += `${justBaseNumber[i]}`;
+      }
+    }
+    setNumval(newNumber);
   };
 
   function formatPhoneNumber(value) {
     if (!value) return value;
     const phoneNumber = value.replace(/[^\d]/g, "");
-
-    if (phoneNumber.length < 4) return phoneNumber;
-    if (phoneNumber.length < 7) {
-      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    }
-    return `(${phoneNumber.slice(0, 3)})${phoneNumber.slice(
-      3,
-      5
-    )} ${phoneNumber.slice(5, 8)}${phoneNumber.slice(8, 10)}${phoneNumber.slice(
-      10,
-      12
-    )}`;
+    setForval(phoneNumber);
   }
 
   return (
@@ -178,6 +216,7 @@ const Deliveries = ({ lan }) => {
                             : "Konsultatsiya olish"}
                         </h2>
                         <form
+                          name="form"
                           autoComplete="off"
                           onSubmit={PostForm}
                           className="space-y-6 w-[70%] mx-auto flex flex-col justify-center py-5 md:py-8 relative"
@@ -190,7 +229,9 @@ const Deliveries = ({ lan }) => {
                             minLength={5}
                             maxLength={30}
                             onChange={(e) => changeNameHandler(e)}
+                            onFocus={(e) => changeNameHandler(e)}
                             style={styled}
+                            value={text}
                             required
                           />
                           <span className="text-xs text-red-600 pl-2 absolute top-10 md:top-14 ">
@@ -200,10 +241,16 @@ const Deliveries = ({ lan }) => {
                             className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-full px-3 py-2 rounded-[14px] bg-white"
                             placeholder={lan ? "Ваше номер" : "Raqamingiz"}
                             type="text"
-                            value={inputValue}
+                            value={numval}
                             name="password"
-                            maxLength={15}
-                            onChange={(e) => changeValHandler(e)}
+                            maxLength={17}
+                            onChange={(e) => {
+                              formatPhoneNumber(e.target.value),
+                                CantrolPhoneNumber(e.target.value);
+                            }}
+                            onFocus={(e) => {
+                              onfocusPhoneNumber(e.target.value);
+                            }}
                             style={stylede}
                             required
                           />

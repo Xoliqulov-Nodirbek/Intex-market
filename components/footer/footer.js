@@ -20,8 +20,10 @@ const Footer = ({ lan }) => {
   const [info, setInfo] = useState([]);
   const [post, setPost] = useState("");
   const [text, setText] = useState("");
+  const [forVal, setForval] = useState("");
+  const [numval, setNumval] = useState("");
 
-  let production = "http://31.44.6.77:5555";
+  let production = "https://market-index.herokuapp.com";
 
   // ----- Site Informations
   useEffect(() => {
@@ -33,7 +35,11 @@ const Footer = ({ lan }) => {
       .catch((err) => console.log(err));
   }, [info, production]);
 
-  const formChangeHandler = async (evt) => {
+  function closeModal() {
+    setShowModal(!showModal);
+  }
+
+  const postForm = async (evt) => {
     evt.preventDefault();
     // ----- Axios
     await axios
@@ -50,13 +56,11 @@ const Footer = ({ lan }) => {
         setPost("");
         closeModal();
       });
-    console.log(inputValue);
+      setText(""); 
+      setNumval("");
   };
 
-  function closeModal() {
-    setShowModal(!showModal);
-  }
-
+  // ----- Input Validation
   const changeNameHandler = (e) => {
     let elInputName = e.target.name;
     let elInputValue = e.target.value;
@@ -81,14 +85,19 @@ const Footer = ({ lan }) => {
     setStyled(style);
   };
 
-  const changeValHandler = (e) => {
-    let elInputValue = e.target.value;
-    let formattedPhoneNumber = formatPhoneNumber(e.target.value);
+  const onfocusPhoneNumber = (number) => {
+    if (number === "") {
+      setNumval(`+998 `);
+    } else {
+      setNumval(numval);
+    }
+  };
+
+  const CantrolPhoneNumber = (number) => {
+    let a = [...number];
+    console.log(a);
     let stylee = {};
-
-    setInputValue(formattedPhoneNumber);
-
-    if (elInputValue === "") {
+    if (number.length < 16) {
       stylee = {
         border: "2px solid red",
       };
@@ -99,24 +108,46 @@ const Footer = ({ lan }) => {
       };
       setErrPassword("");
     }
+
     setStylede(stylee);
+
+    let arrNumber = number.split(" ").join("").split("");
+
+    if (arrNumber.length < 5) {
+      setNumval(number);
+      return;
+    }
+
+    let justBaseNumber = [];
+
+    if (arrNumber.slice(0, 4).join("") === "+998") {
+      justBaseNumber = arrNumber.slice(4, arrNumber.length);
+    } else if (arrNumber.slice(0, 3).join("") === "+99") {
+      justBaseNumber = arrNumber.slice(3, arrNumber.length);
+    } else if (arrNumber.slice(0, 2).join("") === "+9") {
+      justBaseNumber = arrNumber.slice(2, arrNumber.length);
+    } else if (arrNumber.slice(0, 1).join("") === "+") {
+      justBaseNumber = arrNumber.slice(1, arrNumber.length);
+    } else {
+      justBaseNumber = arrNumber.slice(0, arrNumber.length);
+    }
+
+    let newNumber = `+998 `;
+
+    for (let i = 0; i < justBaseNumber.length; i++) {
+      if (i === 2 || i === 5 || i === 7) {
+        newNumber += ` ${justBaseNumber[i]}`;
+      } else {
+        newNumber += `${justBaseNumber[i]}`;
+      }
+    }
+    setNumval(newNumber);
   };
 
   function formatPhoneNumber(value) {
     if (!value) return value;
     const phoneNumber = value.replace(/[^\d]/g, "");
-
-    if (phoneNumber.length < 4) return phoneNumber;
-    if (phoneNumber.length < 7) {
-      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    }
-    return `(${phoneNumber.slice(0, 3)})${phoneNumber.slice(
-      3,
-      5
-    )} ${phoneNumber.slice(5, 8)}${phoneNumber.slice(8, 10)}${phoneNumber.slice(
-      10,
-      12
-    )}`;
+    setForval(phoneNumber);
   }
 
   return (
@@ -132,20 +163,21 @@ const Footer = ({ lan }) => {
               </h3>
               <form
                 autoComplete="off"
-                onSubmit={formChangeHandler}
+                onSubmit={postForm}
                 className=" flex flex-col items-center gap-4 pt-4 "
               >
                 <div className="flex flex-col gap-1 relative">
                   <input
                     style={styled}
                     onChange={(e) => changeNameHandler(e)}
+                    onFocus={(e) => changeNameHandler(e)}
                     required
                     className=" px-2 py-1.5 rounded-lg w-64  sm:w-96 lg:w-80 xl:w-96 outline-none focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg"
                     type="text"
                     name="text"
                     placeholder={lan ? "Ваше имя" : "Ismingiz"}
                     minLength={5}
-                    maxLength={20}
+                    maxLength={30}
                     value={text}
                   />
                   <span className="text-xs text-red-600 pl-2 absolute -bottom-4">
@@ -156,14 +188,19 @@ const Footer = ({ lan }) => {
                 <div className="flex flex-col gap-1 relative">
                   <input
                     style={stylede}
-                    onChange={(e) => changeValHandler(e)}
+                    onChange={(e) => {
+                      formatPhoneNumber(e.target.value),
+                      CantrolPhoneNumber(e.target.value);
+                    }}
+                    onFocus={(e) => {
+                      onfocusPhoneNumber(e.target.value);
+                    }}
                     required
-                    value={inputValue}
+                    value={numval}
                     className="px-2 py-1.5 rounded-lg w-64 sm:w-96 lg:w-80 xl:w-96 outline-none focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg"
                     type="text"
                     name="telefon"
-                    minLength={15}
-                    maxLength={15}
+                    maxLength={17}
                     placeholder={lan ? "Ваше номер" : "Raqamingiz"}
                   />
                   <span className="text-xs text-red-600 pl-2 absolute -bottom-4">

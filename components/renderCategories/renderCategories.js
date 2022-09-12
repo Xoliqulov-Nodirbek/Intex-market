@@ -28,15 +28,17 @@ const RenderCatigories = ({ lan }) => {
   const [err, setErr] = useState("");
   const [errPassword, setErrPassword] = useState("");
   const [errAdr, setErrAdr] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  const [forVal, setForval] = useState("");
+  const [numval, setNumval] = useState("");
   const [text, setText] = useState("");
+  const [address, setAddress] = useState("");
 
   const Recommended = 1;
   const NotAvailable = 2;
   const Discount = 3;
   const pust = 4;
 
-  let production = "http://31.44.6.77:5555";
+  let production = "https://market-index.herokuapp.com";
 
   // ----- CloseModal
   function closeModal() {
@@ -99,6 +101,9 @@ const RenderCatigories = ({ lan }) => {
           setPost("");
         }, 2000)
       );
+      setText("");
+      setNumval("");
+      setAddress("");
   };
 
   // ----- Input Validation
@@ -113,24 +118,61 @@ const RenderCatigories = ({ lan }) => {
       style = {
         border: "2px solid red",
       };
+
       setErr("Вы не ввели свое имя");
     } else {
       style = {
         border: "2px solid #02db26",
       };
+
       setErr("");
     }
+
     setStyled(style);
   };
 
-  const changeValHandler = (e) => {
+  const changeNameHandle = (e) => {
+    let elInputName = e.target.name;
     let elInputValue = e.target.value;
-    let formattedPhoneNumber = formatPhoneNumber(e.target.value);
+    let a = { [elInputName]: elInputValue };
+    let style = {};
+    setAddress(e.target.value.replace(/[^a-zA-Z]/gi, ""));
+
+    if (a[elInputName] === "") {
+      style = {
+        border: "2px solid red",
+      };
+
+      setErrAdr("Вы не ввели свое имя");
+    } else {
+      style = {
+        border: "2px solid #02db26",
+      };
+
+      setErrAdr("");
+    }
+
+    setStyles(style);
+  };
+
+  const onfocusPhoneNumber = (number) => {
+    if (number === "") {
+      setNumval(`+998 `);
+    } else {
+      setNumval(numval);
+    }
+  };
+
+  const CantrolPhoneNumber = (number) => {
+    let a = [...number];
+
+    let result = a.map((x) => {
+      return parseInt(x, 10);
+    });
+    console.log(result);
+
     let stylee = {};
-
-    setInputValue(formattedPhoneNumber);
-
-    if (elInputValue === "") {
+    if (number.length < 16) {
       stylee = {
         border: "2px solid red",
       };
@@ -141,45 +183,47 @@ const RenderCatigories = ({ lan }) => {
       };
       setErrPassword("");
     }
+
     setStylede(stylee);
+
+    let arrNumber = number.split(" ").join("").split("");
+
+    if (arrNumber.length < 5) {
+      setNumval(number);
+      return;
+    }
+
+    let justBaseNumber = [];
+
+    if (arrNumber.slice(0, 4).join("") === "+998") {
+      justBaseNumber = arrNumber.slice(4, arrNumber.length);
+    } else if (arrNumber.slice(0, 3).join("") === "+99") {
+      justBaseNumber = arrNumber.slice(3, arrNumber.length);
+    } else if (arrNumber.slice(0, 2).join("") === "+9") {
+      justBaseNumber = arrNumber.slice(2, arrNumber.length);
+    } else if (arrNumber.slice(0, 1).join("") === "+") {
+      justBaseNumber = arrNumber.slice(1, arrNumber.length);
+    } else {
+      justBaseNumber = arrNumber.slice(0, arrNumber.length);
+    }
+
+    let newNumber = `+998 `;
+
+    for (let i = 0; i < justBaseNumber.length; i++) {
+      if (i === 2 || i === 5 || i === 7) {
+        newNumber += ` ${justBaseNumber[i]}`;
+      } else {
+        newNumber += `${justBaseNumber[i]}`;
+      }
+    }
+    setNumval(newNumber);
   };
 
   function formatPhoneNumber(value) {
     if (!value) return value;
     const phoneNumber = value.replace(/[^\d]/g, "");
-
-    if (phoneNumber.length < 4) return phoneNumber;
-    if (phoneNumber.length < 7) {
-      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
-    }
-    return `(${phoneNumber.slice(0, 3)})${phoneNumber.slice(
-      3,
-      5
-    )} ${phoneNumber.slice(5, 8)}${phoneNumber.slice(8, 10)}${phoneNumber.slice(
-      10,
-      12
-    )}`;
+    setForval(phoneNumber);
   }
-
-  const changeAdressHandler = (e) => {
-    let elInputName = e.target.name;
-    let elInputValue = e.target.value;
-    let a = { [elInputName]: elInputValue };
-    let styles = {};
-
-    if (a[elInputName] === "") {
-      styles = {
-        border: "2px solid red",
-      };
-      setErrAdr("Вы не ввели свое адрес");
-    } else {
-      styles = {
-        border: "2px solid #02db26",
-      };
-      setErrAdr("");
-    }
-    setStyles(styles);
-  };
 
   // ----- PutDotNumber
   function FormatNumber(num) {
@@ -345,7 +389,7 @@ const RenderCatigories = ({ lan }) => {
                         <form
                           autoComplete="off"
                           onSubmit={formPost}
-                          className=" relative space-y-3 md:space-y-5 mt-4 md:mt-0 mx-auto flex flex-col justify-center"
+                          className=" relative space-y-5 md:space-y-5 mt-4 md:mt-0 mx-auto flex flex-col justify-center"
                         >
                           <input
                             name="name"
@@ -356,10 +400,11 @@ const RenderCatigories = ({ lan }) => {
                             minLength={5}
                             maxLength={20}
                             onChange={(e) => changeNameHandler(e)}
+                            onFocus={(e) => changeNameHandler(e)}
                             style={styled}
                             value={text}
                           />
-                          <span className="text-xs text-red-600 pl-2 absolute left-9 md:left-0 top-[22px] lg:top-4">
+                          <span className="text-xs text-red-600 pl-2 absolute left-4 md:left-0 top-[22px] lg:top-5">
                             {err}
                           </span>
                           <input
@@ -369,13 +414,18 @@ const RenderCatigories = ({ lan }) => {
                             placeholder={lan ? "Ваш номер" : "Raqamingiz"}
                             defaultValue={"+998"}
                             required
-                            minLength={15}
-                            maxLength={15}
-                            value={inputValue}
-                            onChange={(e) => changeValHandler(e)}
+                            maxLength={17}
+                            value={numval}
+                            onChange={(e) => {
+                              formatPhoneNumber(e.target.value),
+                                CantrolPhoneNumber(e.target.value);
+                            }}
+                            onFocus={(e) => {
+                              onfocusPhoneNumber(e.target.value);
+                            }}
                             style={stylede}
                           />
-                          <span className="text-xs text-red-600 pl-2 absolute bottom-16 left-9 md:left-0 top-20">
+                          <span className="text-xs text-red-600 pl-2 absolute bottom-16 left-4 md:left-0 top-20">
                             {errPassword}
                           </span>
                           <input
@@ -385,15 +435,17 @@ const RenderCatigories = ({ lan }) => {
                             type="text"
                             minLength={5}
                             maxLength={30}
-                            onChange={(e) => changeAdressHandler(e)}
+                            onChange={(e) => changeNameHandle(e)}
+                            onFocus={(e) => changeNameHandle(e)}
                             style={styles}
                             required
+                            value={address}
                           />
-                          <span className="text-xs text-red-600 pl-2 absolute left-9 md:left-1 bottom-9 md:top-[140px]">
+                          <span className="text-xs text-red-600 pl-2 absolute left-4 md:left-1 bottom-[43px] md:top-[140px]">
                             {errAdr}
                           </span>
                           <button
-                            className="w-[60%] md:w-full mx-auto font-semibold text-sm border rounded-[10px] px-10 py-2 pb-2 bg-yellow-btn tracking-[1px] shadow-xl"
+                            className="w-[70%] md:w-full mx-auto font-semibold text-sm border rounded-[10px] px-10 py-2 pb-2 bg-yellow-btn tracking-[1px] shadow-xl"
                             type="submit"
                           >
                             {lan ? "Заказать" : "Buyurtma berish"}

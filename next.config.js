@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ["31.44.6.77"],
+    domains: ["market-index.herokuapp.com"],
   },
 }
 
