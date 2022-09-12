@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Zoom from "react-reveal/Zoom";
+// import Zoom from "react-reveal/Zoom";
 import { FaTelegramPlane } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/Ai";
 import { IoIosCall } from "react-icons/io";
@@ -289,7 +289,7 @@ const Footer = ({ lan }) => {
         setShowModal(!showModal);
       }, 2000) ? (
         <>
-          <Zoom>
+          <div>
             <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-5">
               <div className="relative max-w-[420px] w-full my-6 mx-auto">
                 {/*content*/}
@@ -325,7 +325,7 @@ const Footer = ({ lan }) => {
                 </div>
               </div>
             </div>
-          </Zoom>
+          </div>
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Close } from "../iconComponents/icons";
 import Admin from "../../styles/assets/images/admist.png";
 import Success from "../../styles/assets/images/success.png";
-import Zoom from "react-reveal/Zoom";
+// import Zoom from "react-reveal/Zoom";
 import axios from "axios";
 
 const Deliveries = ({ lan }) => {
@@ -165,7 +165,7 @@ const Deliveries = ({ lan }) => {
 
         {showModal ? (
           <>
-            <Zoom>
+            <div>
               <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-5">
                 <div className="relative max-w-[420px] w-full my-6 mx-auto">
                   {/*content*/}
@@ -269,7 +269,7 @@ const Deliveries = ({ lan }) => {
                   </div>
                 </div>
               </div>
-            </Zoom>
+            </div>
             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
           </>
         ) : null}

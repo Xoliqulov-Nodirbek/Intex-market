@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Fade } from "react-reveal";
-import Zoom from "react-reveal/Zoom";
+// import { Fade } from "react-reveal";
+// import Zoom from "react-reveal/Zoom";
 import { Close } from "../iconComponents/icons";
 import Image from "next/image";
 import Success from "../../styles/assets/images/success.png";
@@ -255,7 +255,7 @@ const RenderCatigories = ({ lan }) => {
                   datas.data.map(
                     (item) =>
                       category.name_ru == item.category_name_ru && (
-                        <Fade key={item.id} bottom>
+                        <div key={item.id} bottom>
                           <li
                             className={`${main_css.item} relative max-w-[300px] h-[260px] md:max-w-[340px] md:h-[300px] bg-white px-5 pb-5 mx-2 shadow-cardShadow rounded-cardRadius`}
                           >
@@ -316,7 +316,7 @@ const RenderCatigories = ({ lan }) => {
                               </div>
                             </div>
                           </li>
-                        </Fade>
+                        </div>
                       )
                   )}
               </ul>
@@ -327,7 +327,7 @@ const RenderCatigories = ({ lan }) => {
       {/* ----- Modal ----- */}
       {showModal ? (
         <>
-          <Zoom>
+          <div>
             <div className="flex items-center overflow-x-hidden fixed inset-0 z-50 outline-none focus:outline-none mx-8">
               <div className="relative my-6 mx-auto max-w-[700px] w-full z-50">
                 {/*content*/}
@@ -457,7 +457,7 @@ const RenderCatigories = ({ lan }) => {
                 </div>
               </div>
             </div>
-          </Zoom>
+          </div>
           <div className="opacity-50 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
