@@ -109,12 +109,14 @@ const Header = ({ lan, setLan }) => {
                     <a
                       className={`${styles.telegram} w-6 h-6 md:w-8 md:h-8 bg-slate-200 rounded-md items-center justify-center cursor-pointer`}
                       target="_blank"
+                      rel="noopener noreferrer"
                     ></a>
                   </Link>
                   <Link href={e?.instagram_link}>
                     <a
                       className={`${styles.instagram} inline-block w-6 h-6 md:w-8 md:h-8 bg-slate-200 rounded-md items-center justify-center cursor-pointer`}
                       target="_blank"
+                      rel="noopener noreferrer"
                     ></a>
                   </Link>
                   <button
