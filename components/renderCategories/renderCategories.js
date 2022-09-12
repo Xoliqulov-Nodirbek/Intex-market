@@ -255,7 +255,7 @@ const RenderCatigories = ({ lan }) => {
                   datas.data.map(
                     (item) =>
                       category.name_ru == item.category_name_ru && (
-                        <div key={item.id} bottom>
+                        <div key={item.id} >
                           <li
                             className={`${main_css.item} relative max-w-[300px] h-[260px] md:max-w-[340px] md:h-[300px] bg-white px-5 pb-5 mx-2 shadow-cardShadow rounded-cardRadius`}
                           >
