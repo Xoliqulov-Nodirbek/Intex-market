@@ -194,6 +194,7 @@ const Header = ({ lan, setLan }) => {
                     <Link href={link.telegram_link}>
                       <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="px-12 md:px-10 py-2 md:py-3 bg-white rounded-lg flex items-center justify-center gap-2  text-sm md:text-base font-semibold text-green-main shadow-md shadow-[#00000046]"
                       >
                         <FaTelegramPlane className="w-7 h-7 md:w-5 md:h-5 text-green-main" />
@@ -203,6 +204,7 @@ const Header = ({ lan, setLan }) => {
                     <Link href={link.instagram_link}>
                       <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="px-12 md:px-10 py-2 md:py-3 bg-white rounded-lg flex items-center justify-center gap-2  text-sm md:text-base font-semibold text-green-main shadow-md shadow-[#00000046]"
                       >
                         <AiFillInstagram className="w-7 h-7 md:w-5 md:h-5 text-green-main" />
