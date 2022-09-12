@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Close } from "../iconComponents/icons";
 import Admin from "../../styles/assets/images/admist.png";
 import Success from "../../styles/assets/images/success.png";
-// import Zoom from "react-reveal/Zoom";
+import Zoom from "react-reveal/Zoom";
 import axios from "axios";
 
 const Deliveries = ({ lan }) => {
@@ -17,7 +17,7 @@ const Deliveries = ({ lan }) => {
   const [numval, setNumval] = useState("");
   const [text, setText] = useState("");
 
-  let production = "http://31.44.6.77:5555";
+  let production = "https://market-index.herokuapp.com";
 
   // ----- CloseModal
   function closeModal() {
@@ -165,7 +165,7 @@ const Deliveries = ({ lan }) => {
 
         {showModal ? (
           <>
-            <div>
+            <Zoom>
               <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none mx-5">
                 <div className="relative max-w-[420px] w-full my-6 mx-auto">
                   {/*content*/}
@@ -258,7 +258,7 @@ const Deliveries = ({ lan }) => {
                             {errPassword}
                           </span>
                           <button
-                            className="w-[80%] font-bold text-[14px] border rounded-[10px] mx-auto px-10 pt-2 pb-2 bg-yellow-btn tracking-[1px] shadow-xl"
+                            className="w-[90%] font-bold text-[14px] border rounded-[10px] mx-auto px-10 pt-2 pb-2 bg-yellow-btn tracking-[1px] shadow-xl"
                             type="submit"
                           >
                             {lan ? "Заказать" : "Buyurtma berish"}
@@ -269,7 +269,7 @@ const Deliveries = ({ lan }) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Zoom>
             <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
           </>
         ) : null}

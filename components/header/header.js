@@ -126,7 +126,7 @@ const Header = ({ lan, setLan }) => {
                   </button>
                 </div>
                 {/* hamburger */}
-                <div className="xl:hidden" onClick={handleClick}>
+                <div className="xl:hidden cursor-pointer" onClick={handleClick}>
                   {open ? (
                     <FiX className="w-7 h-7 text-white ml-1 cursor-pointer" />
                   ) : (
@@ -170,11 +170,12 @@ const Header = ({ lan, setLan }) => {
                 {categories.length > 0 &&
                   categories.map((item) => (
                     <div key={item.id} onClick={handleClick}>
-                      <Link href={`#${item.name_ru || item.name_uz}`}>
-                        <a className="bg-white rounded-lg flex items-center justify-center text-md font-semibold text-green-main shadow-md shadow-[#00000046] px-6 md:px-5 py-2 md:py-3 cursor-pointer">
-                          {lan ? item.name_ru : item.name_uz}
-                        </a>
-                      </Link>
+                      <a
+                        href={`#${item.name_ru || item.name_uz}`}
+                        className="bg-white rounded-lg flex items-center justify-center text-md font-semibold text-green-main shadow-md shadow-[#00000046] px-6 md:px-5 py-2 md:py-3 cursor-pointer"
+                      >
+                        {lan ? item.name_ru : item.name_uz}
+                      </a>
                     </div>
                   ))}
               </ul>
