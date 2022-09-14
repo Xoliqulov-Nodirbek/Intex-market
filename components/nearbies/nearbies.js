@@ -28,20 +28,20 @@ const Nearbies = ({ lan }) => {
                     : "Intex Basseynlari afzalliklarning kengligi bilan ajralib turadi, quyida ulardan eng muhimlarini ajratib ko'rsatish mumkin:"}
                 </p>
               </div>
-              <ul className="mt-5 space-y-1">
-                <li className={`${styles.footerItem} text-base lg:text-xl`}>
+              <ul className="mt-5">
+                <li className={`${styles.footerItem} text-base lg:text-xl mt-[3px] lg:mt-0`}>
                   {lan ? "Прочность" : "Chidamlilik"}
                 </li>
-                <li className={`${styles.footerItem} text-base lg:text-xl`}>
+                <li className={`${styles.footerItem} text-base lg:text-xl mt-[3px] lg:mt-0`}>
                   {lan ? " Простота установки" : "O'rnatish uchun juda oson"}
                 </li>
-                <li className={`${styles.footerItem} text-base lg:text-xl`}>
+                <li className={`${styles.footerItem} text-base lg:text-xl mt-[3px] lg:mt-0`}>
                   {lan ? "Красивые и ярки цвета" : "Chiroyli va yorqin ranglar"}
                 </li>
-                <li className={`${styles.footerItem} text-base lg:text-xl`}>
+                <li className={`${styles.footerItem} text-base lg:text-xl mt-[3px] lg:mt-0`}>
                   {lan ? "Стильный дизайн" : "Zmonaviy dizayn"}
                 </li>
-                <li className={`${styles.footerItem} text-base lg:text-xl`}>
+                <li className={`${styles.footerItem} text-base lg:text-xl mt-[3px] lg:mt-0`}>
                   {lan ? "Высокое качество" : "Yuqori sifat"}
                 </li>
               </ul>

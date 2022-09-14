@@ -16,7 +16,6 @@ const Footer = ({ lan }) => {
   const [stylede, setStylede] = useState({});
   const [err, setErr] = useState("");
   const [errPassword, setErrPassword] = useState("");
-  const [inputValue, setInputValue] = useState("");
   const [info, setInfo] = useState([]);
   const [post, setPost] = useState("");
   const [text, setText] = useState("");
@@ -164,7 +163,7 @@ const Footer = ({ lan }) => {
               <form
                 autoComplete="off"
                 onSubmit={postForm}
-                className=" flex flex-col items-center gap-4 pt-4 "
+                className=" flex flex-col items-center gap-5 pt-4 "
               >
                 <div className="flex flex-col gap-1 relative">
                   <input
