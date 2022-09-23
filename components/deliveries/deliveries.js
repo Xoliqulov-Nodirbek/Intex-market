@@ -224,6 +224,7 @@ const Deliveries = ({ lan }) => {
                           <input
                             className=" font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-full px-3 py-2 rounded-[14px] bg-white"
                             placeholder={lan ? "Ваше имя" : "Ismingiz"}
+                            aria-label={lan ? "Ваше имя" : "Ismingiz"}
                             type="text"
                             name="text"
                             minLength={5}
@@ -240,6 +241,7 @@ const Deliveries = ({ lan }) => {
                           <input
                             className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-full px-3 py-2 rounded-[14px] bg-white"
                             placeholder={lan ? "Ваше номер" : "Raqamingiz"}
+                            aria-label={lan ? "Ваше номер" : "Raqamingiz"}
                             type="text"
                             value={numval}
                             name="password"

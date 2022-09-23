@@ -24,7 +24,7 @@ const Nearbies = ({ lan }) => {
               <div className="">
                 <p className="text-sm lg:text-xl">
                   {lan
-                    ? "Бассейны от intex отличаются обширным перечнем преимуществ, из которых можно выделить самые важные:"
+                    ? "Бассейны от iyntex отличаются обширным перечнем преимуществ, из которых можно выделить самые важные:"
                     : "Intex Basseynlari afzalliklarning kengligi bilan ajralib turadi, quyida ulardan eng muhimlarini ajratib ko'rsatish mumkin:"}
                 </p>
               </div>

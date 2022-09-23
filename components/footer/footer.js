@@ -175,6 +175,7 @@ const Footer = ({ lan }) => {
                     type="text"
                     name="text"
                     placeholder={lan ? "Ваше имя" : "Ismingiz"}
+                    aria-label={lan ? "Ваше имя" : "Ismingiz"}
                     minLength={5}
                     maxLength={30}
                     value={text}
@@ -201,6 +202,7 @@ const Footer = ({ lan }) => {
                     name="telefon"
                     maxLength={17}
                     placeholder={lan ? "Ваше номер" : "Raqamingiz"}
+                    aria-label={lan ? "Ваше номер" : "Raqamingiz"}
                   />
                   <span className="text-xs text-red-600 pl-2 absolute -bottom-4">
                     {errPassword}

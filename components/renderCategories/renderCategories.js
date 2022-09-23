@@ -395,6 +395,7 @@ const RenderCatigories = ({ lan }) => {
                             className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[90%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
                             type="text"
                             placeholder={lan ? "Ваше имя" : "Ismingiz"}
+                            aria-label={lan ? "Ваше имя" : "Ismingiz"}
                             required
                             minLength={5}
                             maxLength={20}
@@ -411,6 +412,7 @@ const RenderCatigories = ({ lan }) => {
                             className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[90%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
                             type="tel"
                             placeholder={lan ? "Ваш номер" : "Raqamingiz"}
+                            aria-label={lan ? "Ваше номер" : "Raqamingiz"}
                             defaultValue={"+998"}
                             required
                             maxLength={17}
@@ -431,6 +433,7 @@ const RenderCatigories = ({ lan }) => {
                             name="address"
                             className="font-light focus:outline-none focus:border-stone-600 border-[2px] focus:shadow-lg w-[90%] md:w-full mx-auto px-3 py-[6px] rounded-[14px]"
                             placeholder={lan ? "Ваше адрес" : "Manzilingiz"}
+                            aria-label={lan ? "Ваше адрес" : "Manzilingiz"}
                             type="text"
                             minLength={5}
                             maxLength={30}

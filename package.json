@@ -29,5 +29,9 @@
     "eslint-config-next": "12.2.5",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8"
-  }
+  },
+  "cacheDirectories": [
+    "node_modules/",
+    ".next/cache/"
+  ]
 }
